@@ -1,0 +1,16 @@
+<%- include('partials/header'); -%>
+<form>
+  <h2>Register new account</h2>
+  <label for="name">enter your name</label>
+  <input type="text" name="name" />
+  <span class="name error"></span>
+  <label for="email">enter your email</label>
+  <input type="email" name="email" />
+  <span class="email error"></span>
+  <label for="password">enter your password</label>
+  <input type="text" name="password" />
+  <span class="password error"></span>
+  <button class="btn">register</button>
+</form>
+<script src="registerForm.js"></script>
+<%- include('partials/footer'); -%>
