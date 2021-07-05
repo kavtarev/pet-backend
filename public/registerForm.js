@@ -23,7 +23,7 @@ form.addEventListener('submit', async (e) => {
   })
   let result = await data.json()
   console.log(result)
-  if (!result._id) {
+  if (!result.id) {
     nameError.textContent = result.name
     passwordError.textContent = result.password
     emailError.textContent = result.email

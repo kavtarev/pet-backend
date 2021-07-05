@@ -44,7 +44,7 @@ class Auth {
       const user = await Model.login(email, password)
       let token = createToken(user._id)
       res.cookie('JWT', token, { httpOnly: true, maxAge: 24 * 3600 * 1000 })
-      res.status(200).send(user) //????
+      res.status(200).send({ id: 23 }) //????
     } catch (err) {
       res.status(201).json(handleError(err))
     }
@@ -57,12 +57,11 @@ class Auth {
     res.redirect('/login')
   }
   async postRegister(req, res) {
-    //const { name, password,email } = req.body
     try {
       const user = await Model.create(req.body)
       let token = createToken(user._id)
       res.cookie('JWT', token, { httpOnly: true, maxAge: 24 * 3600 * 1000 })
-      res.status(200).send(user) //?????
+      res.status(200).send({ id: 23 })
     } catch (err) {
       res.status(201).json(handleError(err))
     }

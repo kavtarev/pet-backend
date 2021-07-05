@@ -1,15 +1,19 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-function isEmail(value) {
-  return value.length > 3
-}
+const { isEmail } = require('validator')
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'name is required'],
     unique: true,
     lowercase: true,
-    validate: [isEmail, 'min length is 3'],
+    validate: [
+      (val) => {
+        return val.length >= 3
+      },
+      'min length is 3',
+    ],
   },
   password: {
     type: String,
