@@ -1,6 +1,6 @@
 class quotesControllers {
   getAllQuotes(req, res) {
-    res.send('all qoutes')
+    res.render('quotes/quotes')
   }
   getMyQoutes(req, res) {
     res.send('my quote')

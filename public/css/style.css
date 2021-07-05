@@ -1,6 +1,7 @@
 :root {
   --color-primary: rgb(169, 208, 235);
   --red-color: rgb(126, 50, 50);
+  --black-color: #444;
 }
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 * {
@@ -8,7 +9,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
-  color: #444;
+  color: var(--black-color);
 }
 body {
   margin: 20px 40px;
@@ -93,7 +94,6 @@ form {
   border: 1px solid rgb(235, 223, 223);
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 2px 2px 2px 2px var(--red-color);
 }
 form label {
   display: block;
@@ -126,4 +126,44 @@ footer {
   text-align: center;
   margin-top: 120px;
   color: #aaa;
+}
+
+/* to do with quotes section */
+.quotes-wrapper {
+  max-width: 70%;
+  margin: 20px auto;
+  border: 1px solid;
+}
+.quotes-content {
+  padding: 10px 30px;
+}
+.quote {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px var(--color-primary);
+}
+.quote-text {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px;
+}
+.quote-author {
+  display: flex;
+  margin: 5px;
+  justify-content: flex-end;
+}
+.quote-btn {
+  width: 100%;
+  border: 1px solid;
+  font-size: 20px;
+  font-weight: 800;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.quote-btn:hover {
+  background-color: var(--black-color);
+  color: white;
 }
