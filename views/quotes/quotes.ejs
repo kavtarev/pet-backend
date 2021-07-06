@@ -1,35 +1,15 @@
 <%- include('../partials/header'); -%>
     <div class="quotes-wrapper">
       <div class="quotes-content">
-        <div class="quote">
-          <div class="quote-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio libero at eveniet!</div>
-          <div class="quote-author"><span>lenin</span></div>
-          <button class="quote-btn">add to my qoutes</button>
-          <button class="quote-btn">remove from my quotes</button>
-        </div>
-        <div class="quote">
-          <div class="quote-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio libero at eveniet!</div>
-          <div class="quote-author"><span>lenin</span></div>
-          <button class="quote-btn">add to my qoutes</button>
-          <button class="quote-btn">remove from my quotes</button>
-        </div>
-        <div class="quote">
-          <div class="quote-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio libero at eveniet!</div>
-          <div class="quote-author"><span>lenin</span></div>
-          <button class="quote-btn">add to my qoutes</button>
-          <button class="quote-btn">remove from my quotes</button>
-        </div><div class="quote">
-          <div class="quote-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio libero at eveniet!</div>
-          <div class="quote-author"><span>lenin</span></div>
-          <button class="quote-btn">add to my qoutes</button>
-          <button class="quote-btn">remove from my quotes</button>
-        </div>
-        soon to be qoutes app 
+        <% quotes.forEach(function(quote){ %> <%-
+          include('../partials/quote',{quote:quote}); %> <% }); %>
+        
+        
       </div>
       <%- include('../partials/pagination'); -%>
     </div>
    
     
-
+    <script src="js/quotes.js"></script>
   </bodyh>
 </htmlh>

@@ -1,0 +1,13 @@
+<div class="quote">
+  <div class="quote-text"><%= quote.text%></div>
+  <div class="quote-author"><span><%= quote.author%></span></div>
+  <% if(!quote.users.includes(id)){%>
+  <button data-type="add" data-id="<%= quote.id%>" class="quote-btn">
+    add to my qoutes
+  </button>
+  <%} else{ %>
+  <button data-type="delete" data-id="<%= quote.id%>" class="quote-btn">
+    remove from my quotes
+  </button>
+  <%}%>
+</div>

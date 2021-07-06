@@ -6,11 +6,14 @@ const quotesRouter = require('./router/quotesRouter')
 const cookieParser = require('cookie-parser')
 const { restricted } = require('./middlewares/restricted')
 const { personalize } = require('./middlewares/personalize')
+const path = require('path')
 
 const app = express()
 const PORT = process.env.PORT || 3000
 app.use(express.static('public'))
+app.use('/quotes', express.static(__dirname + '/public'))
 app.use(express.json())
+
 app.use(cookieParser())
 app.set('view engine', 'ejs')
 app.set('views', 'views')
@@ -27,6 +30,9 @@ mongoose
   })
   .catch((err) => console.log(err))
 app.get('*', personalize)
+app.post('*', personalize)
+app.put('*', personalize)
+app.delete('*', personalize)
 app.get('/', (req, res) => {
   res.render('index')
 })
