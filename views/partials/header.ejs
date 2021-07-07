@@ -11,7 +11,7 @@
     <nav>
       <h2><a href="/">Pet Project</a></h2>
       <ul>
-        <% if (user) { %>
+        <% if (user.id) { %>
         <li><span>hello <%= user.name %></span></li>
 
         <li><a href="/logout">Log out</a></li>

@@ -23,11 +23,16 @@ form.addEventListener('submit', async (e) => {
 document.addEventListener('click', async (e) => {
   if (e.target.dataset.type === 'add') {
     let data = await fetch('/quotes/' + e.target.dataset.id, { method: 'PUT' })
+    location.reload()
   }
   if (e.target.dataset.type === 'delete') {
     let data = await fetch('/quotes/' + e.target.dataset.id, {
       method: 'DELETE',
     })
     location.reload()
+  }
+  if (e.target.dataset.show) {
+    let addForm = document.querySelector('.add-quote')
+    addForm.classList.add('hide')
   }
 })

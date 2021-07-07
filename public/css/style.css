@@ -132,7 +132,6 @@ footer {
 .quotes-wrapper {
   max-width: 70%;
   margin: 20px auto;
-  border: 1px solid;
 }
 .quotes-content {
   padding: 10px 30px;
@@ -166,4 +165,24 @@ footer {
 .quote-btn:hover {
   background-color: var(--black-color);
   color: white;
+}
+
+.add-quote {
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-primary);
+}
+.hide {
+  opacity: 1;
+  z-index: 11;
 }

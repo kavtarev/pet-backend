@@ -7,7 +7,7 @@ const personalize = (req, res, next) => {
     jsonwebtoken.verify(token, process.env.SECRET, async (err, decoded) => {
       if (err) {
         console.log(err)
-        res.locals.user = null
+        res.locals.user = {}
         next()
       } else {
         let user = await User.findById(decoded.id)
@@ -16,7 +16,7 @@ const personalize = (req, res, next) => {
       }
     })
   } else {
-    res.locals.user = null
+    res.locals.user = {}
     next()
   }
 }

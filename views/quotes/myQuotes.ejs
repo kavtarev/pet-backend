@@ -1,17 +1,19 @@
 <%- include('../partials/header'); -%>
+
 <div class="quotes-wrapper">
+  <button data-show="add" class="btn">Add quote</button>
   <div class="quotes-content">
     <% quotes.forEach(function(quote){ %> <%-
     include('../partials/quote',{quote:quote}); %> <% }); %>
   </div>
 </div>
-<div class="add-qoute">
+<div class="add-quote">
   <form>
-    <h2>Add your qoute</h2>
+    <h2>Add your quote</h2>
     <label for="author">author</label>
     <input type="text" name="author" />
 
-    <label for="text">qoute text</label>
+    <label for="text">quote text</label>
     <input type="text" name="text" />
 
     <button class="btn">Add quote</button>

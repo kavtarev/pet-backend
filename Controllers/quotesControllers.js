@@ -4,6 +4,9 @@ const jsonWebToken = require('jsonwebtoken')
 class quotesControllers {
   async getAllQuotes(req, res) {
     const quotes = await quoteModel.find({})
+    if (!res.locals.user) {
+      res.locals.user = {}
+    }
     const id = res.locals.user.id
     res.render('quotes/quotes', { quotes, id })
   }
