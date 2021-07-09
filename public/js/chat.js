@@ -1,6 +1,7 @@
 var socket = io()
 const form = document.querySelector('form')
 const chatMessages = document.querySelector('.chat-messages')
+const users = document.querySelector('.users')
 const input = form.message
 
 form.addEventListener('submit', (e) => {
@@ -24,4 +25,15 @@ socket.on('chat-message', (data) => {
   `
   )
   chatMessages.scrollTop += 400
+})
+
+socket.on('users', (list) => {
+  users.innerHTML = ''
+  for (let item of list) {
+    users.insertAdjacentHTML(
+      'beforeend',
+      `<h5>${item}</h5
+    `
+    )
+  }
 })

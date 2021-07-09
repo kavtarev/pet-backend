@@ -1,12 +1,12 @@
-const io = require('../../server')
 function getJWT(socket) {
-  var properties = socket.handshake.headers.cookie.split(' ')
-  var obj = {}
-  properties.forEach(function (property) {
-    var tup = property.split('=')
-    obj[tup[0]] = tup[1]
-    return obj['JWT']
-  })
+  let properties = socket.handshake.headers.cookie.split(' ')
+  let obj = {}
+  for (let i = 0; i < properties.length; i++) {
+    let temp = properties[i].split('=')
+    obj[temp[0]] = temp[1]
+  }
+
+  return obj.JWT
 }
 
 module.exports = { getJWT }

@@ -12,9 +12,9 @@ const http = require('http')
 const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
-const ioFunction = require('./io/io')
 const { getJWT } = require('./public/js/ioFunction')
-
+const jsonwebtoken = require('jsonwebtoken')
+const User = require('./Model/UserModel')
 const PORT = process.env.PORT || 3000
 
 app.use(express.static('public'))
@@ -49,22 +49,46 @@ app.use(authRouter)
 app.use(function (req, res, next) {
   res.status(404).render('error')
 })
+let usersList = []
 io.on('connection', (socket) => {
+  let user
+
   const key = getJWT(socket)
-  socket.emit('chat-message', { message: 'hello', date: '', user: 'chat-bot' })
-  socket.broadcast.emit('chat-message', {
-    message: socket.id + ' entered the room',
-    date: '',
-    user: 'chat-bot',
+
+  jsonwebtoken.verify(key, process.env.SECRET, async (err, decoded) => {
+    if (err) {
+      console.log(err)
+    } else {
+      try {
+        user = await User.findById(decoded.id)
+        socket.emit('chat-message', {
+          message: `hello ${user.name}`,
+          date: '',
+          user: 'chat-bot',
+        })
+        socket.broadcast.emit('chat-message', {
+          message: user.name + ' entered the room',
+          date: '',
+          user: 'chat-bot',
+        })
+        usersList.push(user.name)
+        io.emit('users', usersList)
+      } catch (e) {
+        console.log(e)
+      }
+    }
   })
+
   socket.on('chat-message', (message) => {
-    io.emit('chat-message', { ...message, user: 'kuka' })
+    io.emit('chat-message', { ...message, user: user.name })
   })
-  socket.on('disconnect', (user) => {
+  socket.on('disconnect', () => {
     io.emit('chat-message', {
-      message: 'kuka left the chat',
+      message: `${user.name} left the chat`,
       date: '',
-      user,
+      user: 'chat-bot',
     })
+    usersList = usersList.filter((name) => name !== user.name)
+    io.emit('users', usersList)
   })
 })
