@@ -13,6 +13,7 @@ const server = http.createServer(app)
 const { Server } = require('socket.io')
 const io = new Server(server)
 const ioFunction = require('./io/io')
+const { getJWT } = require('./public/js/ioFunction')
 
 const PORT = process.env.PORT || 3000
 
@@ -48,4 +49,22 @@ app.use(authRouter)
 app.use(function (req, res, next) {
   res.status(404).render('error')
 })
-io.on('connection', ioFunction)
+io.on('connection', (socket) => {
+  const key = getJWT(socket)
+  socket.emit('chat-message', { message: 'hello', date: '', user: 'chat-bot' })
+  socket.broadcast.emit('chat-message', {
+    message: socket.id + ' entered the room',
+    date: '',
+    user: 'chat-bot',
+  })
+  socket.on('chat-message', (message) => {
+    io.emit('chat-message', { ...message, user: 'kuka' })
+  })
+  socket.on('disconnect', (user) => {
+    io.emit('chat-message', {
+      message: 'kuka left the chat',
+      date: '',
+      user,
+    })
+  })
+})

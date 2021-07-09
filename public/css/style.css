@@ -57,7 +57,8 @@ nav li span {
 }
 h1,
 h2,
-h3 {
+h3,
+h5 {
   text-align: center;
   margin-bottom: 10px;
 }
@@ -189,4 +190,52 @@ footer {
 .hide {
   opacity: 1;
   z-index: 11;
+}
+
+/* chat app */
+
+.chat-wrapper {
+  max-width: 70%;
+  margin: 20px auto;
+  border: 1px solid;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.chat {
+  display: grid;
+  grid-template-rows: 10fr 60px;
+}
+.chat-messages {
+  height: 500px;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+.chat-form {
+  border: 1px solid orange;
+}
+.send-message form {
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+}
+
+.message {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid steelblue;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px var(--color-primary);
+}
+.message-info,
+.message-text {
+  padding: 10px;
+}
+.message-info span {
+  color: var(--red-color);
+}
+.chat-btn {
+  padding: 5px;
+  height: 30px;
+  width: 160px;
 }
