@@ -7,13 +7,18 @@ const cookieParser = require('cookie-parser')
 const { restricted } = require('./middlewares/restricted')
 const { personalize } = require('./middlewares/personalize')
 const path = require('path')
-
 const app = express()
+const http = require('http')
+const server = http.createServer(app)
+const { Server } = require('socket.io')
+const io = new Server(server)
+const ioFunction = require('./io/io')
+
 const PORT = process.env.PORT || 3000
+
 app.use(express.static('public'))
 app.use('/quotes', express.static(__dirname + '/public'))
 app.use(express.json())
-
 app.use(cookieParser())
 app.set('view engine', 'ejs')
 app.set('views', 'views')
@@ -24,15 +29,13 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((res) => {
-    app.listen(PORT, () => {
-      console.log('server is upp ')
+    server.listen(PORT, () => {
+      console.log('server is upp and socket')
     })
   })
   .catch((err) => console.log(err))
-app.get('*', personalize)
-app.post('*', personalize)
-app.put('*', personalize)
-app.delete('*', personalize)
+
+app.use('*', personalize)
 app.get('/', (req, res) => {
   res.render('index')
 })
@@ -45,3 +48,4 @@ app.use(authRouter)
 app.use(function (req, res, next) {
   res.status(404).render('error')
 })
+io.on('connection', ioFunction)

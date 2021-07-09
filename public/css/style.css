@@ -35,6 +35,9 @@ nav ul {
 }
 nav li {
   margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 nav li a {
   text-transform: uppercase;

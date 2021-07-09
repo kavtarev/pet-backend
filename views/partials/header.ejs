@@ -12,7 +12,10 @@
       <h2><a href="/">Pet Project</a></h2>
       <ul>
         <% if (user.id) { %>
-        <li><span>hello <%= user.name %></span></li>
+        <li>
+          <span>hello</span>
+          <a href="/quotes/myquotes"> <%= user.name %></a>
+        </li>
 
         <li><a href="/logout">Log out</a></li>
         <% } else {%>
