@@ -140,6 +140,12 @@ footer {
 }
 .quotes-content {
   padding: 10px 30px;
+  margin-bottom: 20px;
+  border: 1px solid var(--black-color);
+  border-radius: 10px;
+  height: 800px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 .quote {
   padding: 10px;
