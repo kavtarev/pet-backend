@@ -93,6 +93,12 @@ section .project-info {
   transform: rotateZ(-20deg);
   text-transform: uppercase;
 }
+.project:hover,
+.project-info:hover {
+  box-sizing: border-box;
+  border: 1px solid var(--red-color);
+  background-color: var(--color-primary);
+}
 form {
   max-width: 400px;
   margin: 0 auto;
@@ -143,7 +149,7 @@ footer {
   margin-bottom: 20px;
   border: 1px solid var(--black-color);
   border-radius: 10px;
-  height: 800px;
+  max-height: 800px;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
